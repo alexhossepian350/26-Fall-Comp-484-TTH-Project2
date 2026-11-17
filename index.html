@@ -1,48 +1,53 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <title>Your Giga Pet</title>
-    <meta name="description" content="A cool thing made with Glitch">
-    <link id="favicon" rel="icon" href="https://glitch.com/edit/favicon-app.ico" type="image/x-icon">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script src="script.js" defer></script>
+    <meta name="description" content="Take care of Mr. Fluffy, your Giga Pet cat.">
+    <title>Mr. Fluffy | Giga Pet</title>
     <link rel="stylesheet" href="style.css">
   </head>
   <body>
     <header>
-      <h1>
-        This is your Giga Pet
-      </h1>
+      <h1>This is your Giga Pet</h1>
     </header>
 
     <main>
+      <!-- Pet picture, speech bubble, and nap overlay -->
       <section class="pet-image-container">
-         <!-- Replace pet image with your own pet image -->
-        <img class="pet-image" src="">
+        <!-- Speech bubble: script.js swaps this element out with .replaceWith() after every button press -->
+        <p class="pet-comment">Meow! I'm Mr. Fluffy. Please take good care of me!</p>
+
+        <div class="pet-picture">
+          <img class="pet-image" src="images/cat.png" alt="Mr. Fluffy, a cartoon tabby cat">
+          <!-- Hidden until Mr. Fluffy naps; shown and hidden with .fadeToggle() -->
+          <div class="sleep-overlay">💤 Zzz...</div>
+        </div>
       </section>
+
+      <!-- Pet stats and action buttons -->
       <section class="dashboard">
         <div>Name: <strong><span class="name"></span></strong></div>
         <div>Weight: <strong><span class="weight"></span> pounds</strong></div>
-        <div>Happiness: <strong><span class="happiness"></span> tail wags (per min)</strong></div>
+        <div>Happiness: <strong><span class="happiness"></span> purrs (per min)</strong></div>
+        <!-- New stat that goes with the new Nap button -->
+        <div>Energy: <strong><span class="energy"></span> / <span class="max-energy"></span></strong></div>
+
         <div class="button-container">
-          <button class="treat-button">
-            Treat
-          </button>
-          <button class="play-button">
-            Play
-          </button>
-          <button class="exercise-button">
-            Exercise
-          </button>
+          <button class="treat-button">Treat</button>
+          <button class="play-button">Play</button>
+          <button class="exercise-button">Exercise</button>
+          <!-- New action button -->
+          <button class="nap-button">Nap</button>
         </div>
       </section>
     </main>
 
-    <!-- Your web-app is https, so your scripts need to be too -->
+    <!-- jQuery must load before script.js, because script.js uses $ -->
     <script src="https://code.jquery.com/jquery-2.2.1.min.js"
             integrity="sha256-gvQgAFzTH6trSrAWoH1iPo9Xc96QxSZ3feW6kem+O00="
             crossorigin="anonymous"></script>
+    <script src="script.js"></script>
   </body>
 </html>

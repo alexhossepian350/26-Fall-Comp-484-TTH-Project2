@@ -1,82 +1,135 @@
+/*
+ * Giga Pet: Mr. Fluffy
+ * Page layout, speech bubble, nap overlay, and button styles
+ */
 
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: helvetica, arial, sans-serif;
+  margin: 25px;
+}
+
+header {
+  border-bottom: 1px solid black;
+}
+
+h1 {
+  font-weight: bold;
+  color: #000;
+}
+
+/* Lay out the pet and the dashboard side by side (they wrap on small screens) */
+main {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+/* ---------- Pet image area ---------- */
+
+.pet-image-container {
+  padding: 10px;
+  width: 300px;
+}
+
+/* Lets the sleep overlay sit on top of the image */
+.pet-picture {
+  position: relative;
+  width: 250px;
+}
+
+.pet-image {
+  display: block;
+  height: 250px;
+}
+
+/* Speech bubble with the pet's comment */
+.pet-comment {
+  position: relative;
+  min-height: 3.5em;
+  margin: 0 0 18px;
+  padding: 12px 16px;
+  background-color: #fff8e7;
+  border: 2px solid #1e2835;
+  border-radius: 14px;
+  font-size: 15px;
+  line-height: 1.4;
+  animation: bubble-pop 0.3s ease-out;
+}
+
+/* Small triangle "tail" pointing down at the pet */
+.pet-comment::after {
+  content: "";
+  position: absolute;
+  bottom: -12px;
+  left: 60px;
+  border-width: 12px 10px 0;
+  border-style: solid;
+  border-color: #1e2835 transparent transparent;
+}
+
+/* Plays each time a new bubble is put on the page (see .replaceWith() in script.js) */
+@keyframes bubble-pop {
+  from {
+    opacity: 0;
+    transform: scale(0.85);
   }
-  
-  body {
-    font-family: helvetica, arial, sans-serif;
-    margin: 25px;
+  to {
+    opacity: 1;
+    transform: scale(1);
   }
-  
-  main {
-    display:block;
-    height:175px;
-  }
-  
-  header {
-    border-bottom: 1px solid black;
-  }
-  
-  h1 {
-    font-weight: bold;
-    color: #000;
-  }
-  
-  .bold {
-    font-weight: bold;
-  }
-  
-  p {
-    max-width: 600px;
-  }
-  
-  
-  li {
-    margin-bottom: 5px;
-  }
-  
-  footer {
-    padding-top: 25px;
-    border-top: 1px solid black;
-  }
-  
-  footer a {
-    float:left;
-    margin:5px;
-  }
-  
-  .pet-image {
-    height:250px;
-  }
-  
-  .dashboard div {
-    display:block;
-  }
-  
-  .pet-image-container {
-    float:left;
-    padding:10px;
-  }
-  
-  .dashboard {
-    float:left;
-    padding:20px;
-  }
-  
-  .button-container {
-    margin-top:20px;
-  }
-  
-  .button-container button {
-    width: 100px;
-      margin-right: 10px;
-      text-align: center;
-      display: inline-block;
-      float: left;
-    font-size:15px;
-    background-color: #1e2835;
-    border-color: #404853;
-    cursor:pointer;
-    background-image: linear-gradient(to bottom,rgba(246,246,246,.1)0%,rgba(30,40,53,0)66%);
-    color: #fafafa;
-  }
+}
+
+/* "Zzz" overlay shown during a nap. Starts hidden; .fadeToggle() shows and hides it. */
+.sleep-overlay {
+  display: none;
+  position: absolute;
+  inset: 0;
+  padding-top: 20px;
+  background-color: rgba(30, 40, 53, 0.55);
+  border-radius: 12px;
+  color: #fafafa;
+  font-size: 28px;
+  font-weight: bold;
+  text-align: center;
+}
+
+/* ---------- Dashboard ---------- */
+
+.dashboard {
+  padding: 20px;
+  line-height: 1.8;
+}
+
+.dashboard div {
+  display: block;
+}
+
+.button-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.button-container button {
+  width: 100px;
+  padding: 6px 0;
+  font-size: 15px;
+  text-align: center;
+  color: #fafafa;
+  background-color: #1e2835;
+  background-image: linear-gradient(to bottom, rgba(246, 246, 246, 0.1) 0%, rgba(30, 40, 53, 0) 66%);
+  border-color: #404853;
+  cursor: pointer;
+}
+
+/* Greyed out while the pet is napping */
+.button-container button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
