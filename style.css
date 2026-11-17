@@ -10,6 +10,7 @@
 body {
   font-family: helvetica, arial, sans-serif;
   margin: 25px;
+  background-color: #cccccc;  /* light grey */
 }
 
 header {
@@ -107,6 +108,36 @@ main {
 
 .dashboard div {
   display: block;
+}
+
+/* Gray track behind each stat bar */
+.stat-bar {
+  width: 220px;
+  height: 12px;
+  margin-bottom: 8px;
+  background-color: #ffffff;  /* white so the track stands out on the grey page */
+  border: 1px solid #404853;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+/* Colored fill. script.js sets its width; the transition makes changes slide smoothly. */
+.stat-bar-fill {
+  width: 0;
+  height: 100%;
+  transition: width 0.4s ease, background-color 0.4s ease;
+}
+
+.stat-bar-fill.high {
+  background-color: #3fa34d;  /* green */
+}
+
+.stat-bar-fill.medium {
+  background-color: #e0b020;  /* yellow */
+}
+
+.stat-bar-fill.low {
+  background-color: #d64545;  /* red */
 }
 
 .button-container {

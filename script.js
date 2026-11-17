@@ -35,6 +35,9 @@ var NAP_ENERGY_GAIN = 5;
 var NAP_LENGTH_MS = 2500;  // how long Mr. Fluffy sleeps, in milliseconds
 var FADE_SPEED_MS = 600;   // how long the Zzz overlay takes to fade in or out
 
+// Happiness has no real maximum, so its stat bar counts as "full" at this value
+var HAPPINESS_BAR_MAX = 20;
+
 // Arrays of things Mr. Fluffy might say. After each button press,
 // one comment is picked at random from the matching array.
 var petComments = {
@@ -208,4 +211,29 @@ function updatePetInfoInHtml() {
   $('.happiness').text(pet_info['happiness']);
   $('.energy').text(pet_info['energy']);
   $('.max-energy').text(MAX_ENERGY);
+
+  // Update the visual stat bars to match the numbers
+  updateStatBar('.happiness-bar', pet_info['happiness'], HAPPINESS_BAR_MAX);
+  updateStatBar('.energy-bar', pet_info['energy'], MAX_ENERGY);
+}
+
+// Sets a stat bar's fill width (as a percent of "max") and its color.
+// Colors: green when high, yellow in the middle, red when low (classes in style.css).
+function updateStatBar(barSelector, value, max) {
+  // Convert the stat to a percent, capped at 100% so the bar never overflows
+  var percent = Math.min(value / max, 1) * 100;
+  var bar = $(barSelector);
+
+  // The CSS "transition" on .stat-bar-fill makes this width change slide smoothly
+  bar.css('width', percent + '%');
+
+  // Remove the old color class, then add the one that matches the new level
+  bar.removeClass('low medium high');
+  if (percent <= 30) {
+    bar.addClass('low');
+  } else if (percent <= 60) {
+    bar.addClass('medium');
+  } else {
+    bar.addClass('high');
+  }
 }

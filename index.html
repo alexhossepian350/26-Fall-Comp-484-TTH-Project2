@@ -31,8 +31,12 @@
         <div>Name: <strong><span class="name"></span></strong></div>
         <div>Weight: <strong><span class="weight"></span> pounds</strong></div>
         <div>Happiness: <strong><span class="happiness"></span> purrs (per min)</strong></div>
+        <!-- Stat bar: script.js sets the fill's width and color from pet_info.happiness -->
+        <div class="stat-bar" aria-hidden="true"><div class="stat-bar-fill happiness-bar"></div></div>
+
         <!-- New stat that goes with the new Nap button -->
         <div>Energy: <strong><span class="energy"></span> / <span class="max-energy"></span></strong></div>
+        <div class="stat-bar" aria-hidden="true"><div class="stat-bar-fill energy-bar"></div></div>
 
         <div class="button-container">
           <button class="treat-button">Treat</button>
