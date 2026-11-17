@@ -130,19 +130,8 @@ function clickedNapButton() {
   showPetComment('napStart');
 
   /*
-   * jQuery method #2: .fadeToggle(duration, complete)
-   *
-   * .fadeToggle() checks whether the element is currently visible and then
-   * animates its opacity the opposite way:
-   *   - hidden  -> fades IN  (opacity 0 to 1, then it stays displayed)
-   *   - visible -> fades OUT (opacity 1 to 0, then it is set to display: none)
-   * "duration" is how long the fade takes in milliseconds. "complete" is an
-   * optional function jQuery calls once the fade has finished.
-   *
-   * Because it toggles, the same call is used both to show and to hide the
-   * "Zzz" overlay. The overlay starts hidden (display: none in style.css), so:
-   *   1st call -> the overlay fades in as Mr. Fluffy falls asleep
-   *   2nd call -> the overlay fades out as he wakes up
+   jQuery Method #2: .fadeToggle(duration, complete)
+   * The .fadeToggle() function determines whether an element is displayed and then animates it's opacity the other way. "Duration" is the time the fade effect takes in milliseconds. Being a toggle function, .fadeToggle() can be used to fade out as well as fade in the "Zzz" overlay. It is initially hidden (display: none in style.css). The 1st call -> the overlay fades in while Mr. Fluffy is falling asleep 2nd call -> the overlay fades out when he wakes up
    */
   $('.sleep-overlay').fadeToggle(FADE_SPEED_MS);
 
@@ -186,18 +175,7 @@ function showPetComment(action) {
   /*
    * jQuery method #1: .replaceWith(newContent)
    *
-   * .replaceWith() removes every element matched by the selector (here the
-   * current ".pet-comment" bubble) from the page and puts "newContent" in its
-   * exact spot. "newContent" can be an HTML string, a DOM element, or a
-   * jQuery object; here it is the jQuery object built above. The method
-   * returns the OLD element that was removed, which we don't need here.
-   *
-   * Why replace the bubble instead of just changing its text? The bubble has
-   * a CSS "pop-in" animation that only plays when the element is first added
-   * to the page. Changing the text with .text() would reuse the same element,
-   * so the animation would play only once. Replacing it with a new element
-   * makes the animation play again on every button press, so the user can
-   * see that the pet has said something new.
+    * .replaceWith() takes out all elements selected by the selectorand replaces it with "newContent" in the exact place of the old one. "newContent" may be either HTML string,DOM element, or jQuery object - in our case, a jQuery object created above. The method returns the replaced element, which we do not use in this case. This bubble has "pop-in" CSS animation effect, which works only when the element is added to the document for the first time. If I change the text of the element, the same animation effect would work only once.
    */
   $('.pet-comment').replaceWith(newBubble);
 }
